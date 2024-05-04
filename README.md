@@ -86,7 +86,7 @@ While reliable battery consumption metrics were not readily available, observati
 
 The performance monitor from the React Native application consistently shows a frame rate of around 60 frames per second (FPS). This indicates that the application runs smoothly without any noticeable stuttering, contributing to a seamless user experience.
 
-![Performance Indicator Screenshot](https://drive.google.com/file/d/1468mBb1vliI5oot8C5FFoQHql62wSz3d/view?usp=sharing)
+![Performance Indicator Screenshot](perf_indicator.jpg)
 
 # QR Code Scanning Roadmap for iOS
 
