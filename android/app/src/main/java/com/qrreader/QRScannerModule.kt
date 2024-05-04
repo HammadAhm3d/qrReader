@@ -22,51 +22,23 @@ class QRScannerModule(reactContext: ReactApplicationContext) : ReactContextBaseJ
     override fun getName(): String {
         return "QRScannerModule"
     }
-
     @ReactMethod
-    fun openScanner(isBeepEnable: Boolean, prompt: String?, callback: Callback) {
-        mCallback = callback
-        val activity = currentActivity
-        if (activity != null) {
-            IntentIntegrator(activity)
-                .setPrompt(prompt ?: "")
-                .setBeepEnabled(isBeepEnable)
-                .initiateScan()
-            reactApplicationContext.addActivityEventListener(this)
-        }
-    }
-
-    @ReactMethod
-    fun openCustomScanner(isBeepEnable: Boolean, isOrientationLocked: Boolean, barcodeTypes: ReadableArray?, callback: Callback) {
+    fun openCustomScanner(isBeepEnable: Boolean, isOrientationLocked: Boolean, prompt: String?, barcodeTypes: ReadableArray?, callback: Callback) {
         mCallback = callback
         val activity = currentActivity
         val types = getBarcodesTypes(barcodeTypes)
         if (activity != null) {
             IntentIntegrator(activity)
+                .setPrompt(prompt ?: "")
                 .setBeepEnabled(isBeepEnable)
                 .setDesiredBarcodeFormats(types)
                 .setOrientationLocked(isOrientationLocked)
-                .setCaptureActivity(QRScannerActivity::class.java)
+//                .setCaptureActivity(QRScannerActivity::class.java)
                 .initiateScan()
             reactApplicationContext.addActivityEventListener(this)
         }
     }
 
-    @ReactMethod
-    fun openScannerWithPhoto(isBeepEnable: Boolean, prompt: String?, barcodeTypes: ReadableArray?, callback: Callback) {
-        mCallback = callback
-        val activity = currentActivity
-        val types = getBarcodesTypes(barcodeTypes)
-        if (activity != null) {
-            IntentIntegrator(activity)
-                .setPrompt(prompt ?: "")
-                .setBeepEnabled(isBeepEnable)
-                .setDesiredBarcodeFormats(types)
-                .setBarcodeImageEnabled(true)
-                .initiateScan()
-            reactApplicationContext.addActivityEventListener(this)
-        }
-    }
 
     private fun getBarcodesTypes(barcodeTypes: ReadableArray?): ArrayList<String>? {
         if (barcodeTypes == null) {

@@ -1,14 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import {
-  Text,
-  View,
-  NativeEventEmitter,
-  NativeModules,
-  Button,
-} from 'react-native';
+import React, {useState} from 'react';
+import {Button, NativeModules, Text, View} from 'react-native';
 
-const {QRScannerModule, ImagePickerModule} = NativeModules;
-// const eventEmitter = new NativeEventEmitter(QRScannerModule);
+const {QRScannerModule} = NativeModules;
 
 var barcodeTypes = [
   'QR_CODE',
@@ -32,7 +25,13 @@ const App = () => {
   const [scannedData, setScannedData] = useState('');
 
   const handleScanQRCode = () => {
-    QRScannerModule.openScannerWithPhoto(true, null, null, onBarcodeRead);
+    QRScannerModule.openCustomScanner(
+      true,
+      true,
+      '',
+      barcodeTypes,
+      onBarcodeRead,
+    );
   };
   const onBarcodeRead = (barcode: string) => {
     setScannedData(barcode);
