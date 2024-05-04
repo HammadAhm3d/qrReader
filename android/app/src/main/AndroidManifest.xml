@@ -21,9 +21,10 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
-      <activity
-      android:name=".QRScannerActivity"
-      android:theme="@style/zxing_CaptureTheme"
-      android:screenOrientation="sensorPortrait" />
+        <activity android:name=".CustomScannerActivity"
+        android:screenOrientation="sensorPortrait"
+        android:stateNotNeeded="true"
+        android:theme="@style/zxing_CaptureTheme"
+        android:windowSoftInputMode="stateAlwaysHidden"></activity>
     </application>
 </manifest>
